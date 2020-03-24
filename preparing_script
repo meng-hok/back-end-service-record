@@ -1,0 +1,20 @@
+PROBLEM 
+SOLUTION 
+  change to table with amount column ?
+CREATE OR REPLACE FUNCTION totalBetweenDate(IN start_date date,IN end_date date)
+RETURNS setof unit AS $$  
+declare  
+    total integer;  
+BEGIN  
+   RETURN QUERY select * from unit;  
+END;  
+$$ LANGUAGE plpgsql;  
+
+CREATE OR REPLACE VIEW unitRecordBetweenDate as SELECT count(*) as number, SUM(u."price") as total_price , u."categoryId" FROM "unit" as u WHERE u."status" = 1 GROUP BY u."categoryId" 
+ SELECT count(*) as number, SUM(u."price") as total_price , u."categoryId" FROM "unit" as u WHERE u."status" = 1 GROUP BY u."categoryId"
+ 
+select * from unitRecordBetweenDate where '2020-03-23','2020-03-23')
+
+SELECT count(*) as number, SUM(u."price") as total_price , u."categoryId" FROM "unit" as u WHERE u."created" BETWEEN '2020-03-23' AND '2020-03-29' GROUP BY u."categoryId" 
+
+Select count(id) from unit
