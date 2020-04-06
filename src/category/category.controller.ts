@@ -1,6 +1,7 @@
 import { Controller, Get, Post, Inject, Body, Put } from '@nestjs/common';
 import { Category } from './category.entity';
 import { CategoryService } from './category.service';
+import { InsertResult } from 'typeorm';
 
 @Controller('category')
 export class CategoryController {
@@ -14,7 +15,7 @@ export class CategoryController {
     }
 
     @Post("/")
-    insert(@Body("category") category : Category) : Category{
+    insert(@Body() category : Category) : Promise<InsertResult>{
         /**
          * { "category" : { 
          *     "name" : "menghok"
@@ -24,7 +25,7 @@ export class CategoryController {
          */
        category.status =1;
        const result = this.categoryService.insert(category);
-       return category; 
+       return result; 
     }
 
     @Put("/update")
@@ -36,5 +37,19 @@ export class CategoryController {
             console.log(error)
             return error;
         }
+    }
+
+    @Put("/remove")
+    async remove(@Body() category : Category){
+        try {
+            category.status = 0;
+            const result = this.categoryService.remove(category)
+            console.log(result)
+            return result;
+        } catch (error) {
+            console.log(error)
+            return error;
+        }
+
     }
 }

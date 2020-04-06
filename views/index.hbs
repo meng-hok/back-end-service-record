@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>App</title>
+  </head>
+  <body>
+    {{ message }}
+    {{>sample}}
+  </body>
+  <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+    <script>
+    // compile the template
+    var template = Handlebars.compile("Handlebars <b>{{doesWhat}}</b>");
+    // execute the compiled template and print the output to the console
+    console.log(template({ doesWhat: "rocks!" }));
+        handlebars.loadPartial = function (name) {
+    var partial = handlebars.partials[name];
+    if (typeof partial === "string") {
+        partial = handlebars.compile(partial);
+        handlebars.partials[name] = partial;
+    }
+    return partial;
+    };
+
+    handlebars.registerHelper("block",
+    function (name, options) {
+        /* Look for partial by name. */
+        var partial
+        = handlebars.loadPartial(name) || options.fn;
+        return partial(this, { data : options.hash });
+    });
+    Handlebars.registerPartial("sample", "{{sample}}");
+
+    </script>
+</html>

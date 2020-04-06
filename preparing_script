@@ -18,3 +18,6 @@ select * from unitRecordBetweenDate where '2020-03-23','2020-03-23')
 SELECT count(*) as number, SUM(u."price") as total_price , u."categoryId" FROM "unit" as u WHERE u."created" BETWEEN '2020-03-23' AND '2020-03-29' GROUP BY u."categoryId" 
 
 Select count(id) from unit
+
+SELECT r."categoryId",sum(service_amount) as service_amount , sum(total_price) as total_price  
+FROM "record" as r where r."created" BETWEEN '2020-03-01' AND '2020-03-29'  GROUP BY r."categoryId"

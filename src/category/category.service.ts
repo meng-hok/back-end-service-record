@@ -1,18 +1,22 @@
 import { Injectable } from '@nestjs/common';
 import { Category } from './category.entity';
-import { Repository } from 'typeorm';
+import { Repository, InsertResult } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 @Injectable()
 export class CategoryService {
+   
+    remove(category: Category) {
+       return this.categoryRepository.save(category);
+    }
  
 
     @InjectRepository(Category)
     private categoryRepository: Repository<Category>;
 
-    async insert(category: Category) : Promise<Category> {
+    async insert(category: Category) : Promise<InsertResult> {
        const result = await  this.categoryRepository.insert(category);
         console.log(result);
-        return null;
+        return result;
     }
     
     findAll() : Promise<Category[]> {
