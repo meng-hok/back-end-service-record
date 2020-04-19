@@ -16,11 +16,11 @@ export class Record {
    status : number;
    @Column()
    service_amount : number;
-   @Column()
-   total_price : number;
+  
 
    @Column({ type: 'timestamp', default: () => "CURRENT_TIMESTAMP"})
    created: Date;
 
-
+   @Column({nullable : true,type:"float8"})
+   total_price : number;
 }

@@ -14,6 +14,7 @@ export class CategoryService {
     private categoryRepository: Repository<Category>;
 
     async insert(category: Category) : Promise<InsertResult> {
+        console.log(category)
        const result = await  this.categoryRepository.insert(category);
         console.log(result);
         return result;

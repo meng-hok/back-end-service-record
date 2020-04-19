@@ -4,7 +4,7 @@
     "port": 5432,
     "username": "postgres",
     "password": "postgres",
-    "database": "nest_orm",
+    "database": "motor",
     "entities" :  ["dist/**/*.entity{.ts,.js}"],
     "synchronize": true,
     "logging": true

@@ -9,7 +9,7 @@ export class Category {
     name: string;
     @Column()
     status: number;
-    @Column({nullable : true})
+    @Column({nullable:true,type :"float4"})
     price: number;
     @Column({ type: 'timestamp', default: () => "CURRENT_TIMESTAMP"})
     createdAt: Date;
