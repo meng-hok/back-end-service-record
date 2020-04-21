@@ -32,12 +32,17 @@ export class RecordService {
         return this.recordRepository.queryBetweenDate(start_date,end_date);
     }
     findCurrentDateRecord () : any { 
-        return this.recordRepository.queryUnitRecordByCurrent();
+        let myDate =new Date();
+        myDate.setHours( myDate.getHours() + 7)
+        console.log(myDate)
+        return this.recordRepository.queryUnitRecordByCurrent(myDate.toISOString().split('T')[0]);
     }
 
     insertRecordService(record: Record) : Promise<InsertResult> {
         try{ 
-            console.log(record)
+            let myDate =new Date();
+            myDate.setHours( myDate.getHours() + 7)
+            record.created = myDate;
             record.total_price = record.category.price * record.service_amount;
             return this.recordRepository.insert(record);
         }catch(err){

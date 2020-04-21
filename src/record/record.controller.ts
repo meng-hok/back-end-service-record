@@ -18,9 +18,8 @@ export class RecordController {
     }
 
     @Post("/post")
-    insertGroup (@Body() record: any ) {
-        // let _record : Record= JSON.parse(record);
-        console.log(record)
+    insertGroup (@Body() record: Record ) {
+       
         record.status = 1;
         return this.recordService.insertRecordService(record);
     }

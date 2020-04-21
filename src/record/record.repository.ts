@@ -25,7 +25,7 @@ export class RecordRepository extends Repository<Record> {
         const object = await getConnection()
             .query(`SELECT r.id, c.id as category_id, c.name as category_name, r.service_amount 
             FROM "record" as r JOIN "category" as c on r."categoryId" = c."id" 
-            WHERE r.created > current_date AND r.status = 1`);
+            WHERE r.created > $1 AND r.status = 1`,[date]);
         return object;    
     }
 
