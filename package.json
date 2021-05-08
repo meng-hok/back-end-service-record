@@ -29,7 +29,7 @@
     "express-session": "^1.17.0",
     "fastify": "^2.13.0",
     "fastify-static": "^2.6.0",
-    "handlebars": "^4.7.3",
+    "handlebars": "^4.7.7",
     "hbs": "^4.1.0",
     "helmet": "^3.22.0",
     "nestjs-session": "^1.0.1",
